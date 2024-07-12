@@ -1,0 +1,7 @@
+.env.dev
+.idea
+.vscode
+**/__pycache__/
+logs/*
+raw_data/
+anonymized_data/

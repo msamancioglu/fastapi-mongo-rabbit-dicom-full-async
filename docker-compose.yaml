@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./src/Dockerfile
+    volumes:
+      - ./src:/app
+    restart: on-failure
+    env_file:
+      - .env.dev
+    ports:
+      - "8000:8000"
+    depends_on:
+      rabbit:
+        condition: service_healthy
+      mongodb:
+        condition: service_started
+
+  consumer:
+    build:
+      context: .
+      dockerfile: ./src/pika/Dockerfile
+    restart: always
+    volumes:
+      - ./src:/app
+    env_file:
+      - .env.dev
+    depends_on:
+      rabbit:
+        condition: service_healthy
+
+
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    volumes:
+      - /tmp/mongo:/data/db
+    ports:
+      - 27017:27017
+
+
+  rabbit:
+    image: rabbitmq:3.11.11-management
+    restart: always
+    env_file:
+      - .env.dev
+    ports:
+      - '5672:5672'
+      - "15672:15672"
+    healthcheck:
+      test: [ "CMD", "rabbitmqctl", "status" ]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+
+

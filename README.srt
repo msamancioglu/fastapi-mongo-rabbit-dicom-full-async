@@ -1,0 +1,35 @@
+
+
+Features
+  1. Fully Async CRUD with MongoDB(motor)
+  2. Fully Async Messaging Queue with RabbitMQ (AIO-PIKA)
+  3. Producer Consumer pattern for Dicom Study processing
+  4. PyDicom for dicom data parsing/updating
+  5. Boto3 for S3 bucket access
+  6. Containerized (Dockerfile and docker-compose.yml) dev environment
+  7. Configurated app settings (.env file and base_settings)
+  8. Logs can find by path `src/logs`
+  9. Fastaip / lifespang is used for starting/stopping RabbitMQ service
+
+
+
+Basic Flow
++ Run Process end point (http://localhost:8000/api/v1/test/) to start Dicom processing.
+   1. producer downloads studies from S3 bucket (dicomstudies) into local folder (raw_data)
+   2. producer sends file name as message to process Queue (dicomfiles)
+   3. consumer receives message (file name)  
+   4. consumer extracts patient data and save into mongo db
+   5. consumer anonymize study file and save it into another folder (anonymized_data)
+   6. consumer uploads anonymized studies to another S3 bucket (dicomdata)
+
++ Use list endpoint (http://localhost:8000/api/v1/test/studies) for listing studies
+   
+
+Eenvironment variables:
+  Rename .env.dev-example` to `.env.dev` and update env vars
+
+To Run Services: 
+  $ docker compose up --build
+
+To Stop Services:
+  $ docker compose down
