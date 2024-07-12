@@ -9,7 +9,7 @@ Features
   6. Containerized (Dockerfile and docker-compose.yml) dev environment
   7. Configurated app settings (.env file and base_settings)
   8. Logs can find by path `src/logs`
-  9. Fastaip / lifespang is used for starting/stopping RabbitMQ service
+  9. FastAPI / Lifespan feature is used for starting/stopping RabbitMQ service
 
 
 
