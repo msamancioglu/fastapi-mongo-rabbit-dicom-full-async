@@ -2,6 +2,6 @@
 .idea
 .vscode
 **/__pycache__/
-logs/*
+logs/
 raw_data/
 anonymized_data/
