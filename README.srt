@@ -1,4 +1,7 @@
 
+Summary 
+   Fully ascyn supported Fastapi/Mongodb/RabbitMQ based backend app with Produces/Consumer pattern
+
 
 Features
   1. Fully Async CRUD with MongoDB(motor)
