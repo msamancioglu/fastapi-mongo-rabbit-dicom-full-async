@@ -1,6 +1,6 @@
 
 Summary 
-   Fully Ascyn supported Fastapi/Mongodb/RabbitMQ based backend app with Producer/Consumer pattern
+   Fully Async Fastapi/Mongodb/RabbitMQ based backend app with Producer/Consumer pattern
 
 
 Features

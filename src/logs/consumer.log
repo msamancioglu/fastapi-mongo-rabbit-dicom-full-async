@@ -12705,3 +12705,6 @@ b''
 2024-07-12 17:07:10,409 DEBUG {"clientId": {"$oid": "6691555ea7ee35ee91810d80"}, "message": "Connection pool cleared", "serverHost": "mongodb", "serverPort": 27017}
 2024-07-12 17:07:10,421 DEBUG {"clientId": {"$oid": "6691555ea7ee35ee91810d80"}, "message": "Connection pool ready", "serverHost": "mongodb", "serverPort": 27017}
 2024-07-12 17:07:26,675 DEBUG Received frame <pamqp.heartbeat.Heartbeat object at 0x7f977f4b7850> in channel #0 weight=8 on <Connection: "amqp://user:******@rabbit:5672/" at 0x7f97b0b099f0>
+2024-07-12 17:07:29,743 DEBUG Prepare to send ChannelFrame(payload=b'\x08\x00\x00\x00\x00\x00\x00\xce', should_close=False, drain_future=None)
+2024-07-12 17:07:59,113 DEBUG Received frame <pamqp.heartbeat.Heartbeat object at 0x7f977f6ea450> in channel #0 weight=8 on <Connection: "amqp://user:******@rabbit:5672/" at 0x7f97b0b099f0>
+2024-07-12 17:08:02,474 DEBUG Prepare to send ChannelFrame(payload=b'\x08\x00\x00\x00\x00\x00\x00\xce', should_close=False, drain_future=None)
