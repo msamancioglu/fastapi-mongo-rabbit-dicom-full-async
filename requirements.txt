@@ -1,11 +1,6 @@
-# python = "^3.11"
 fastapi==0.95.0
 hypercorn==0.14.3
 aio-pika==9.0.5
-# sqlalchemy == 2.0.8
-# asyncpg == 0.27.0
-motor
-# aio-pika
-
-boto3
-pydicom
+motor==3.5.1
+boto3==1.34.143
+pydicom==2.4.4
