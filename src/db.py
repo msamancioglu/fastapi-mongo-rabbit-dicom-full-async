@@ -35,11 +35,34 @@ class DBManager:
         result = await self.db.items.delete_one({"_id": item_id})
         return result.deleted_count > 0
     
-    
-    async def search(self) -> bool:
-        result = await self.db.items.find_one({"FileName": "string1111"})
-        print("result")
-        print(result)
+    async def prepare_filter(self, study):
+        filter = []
+        if study.FileName is not None:
+            filter.append({'FileName' : { '$regex' : study.FileName, '$options' : 'i' } })
+        if study.PatientName is not None:
+            filter.append({'PatientName' : { '$regex' :  study.PatientName, '$options' : 'i' } })
+        if study.StudyDate is not None:
+            filter.append({'StudyDate' : { '$regex' :  study.StudyDate, '$options' : 'i' } })
+        if study.PatientID is not None:
+            filter.append({'PatientID' : { '$regex' :  study.PatientID, '$options' : 'i' } })
+        if study.StudyDescription is not None:
+            filter.append({'StudyDescription' : { '$regex' : study.StudyDescription, '$options' : 'i' } })
+        if study.SeriesInstanceUID is not None:
+            filter.append({'SeriesInstanceUID' : { '$regex' :  study.SeriesInstanceUID, '$options' : 'i' } })
+        if study.StudyID is not None:
+            filter.append({'StudyID' : { '$regex' :  study.StudyID, '$options' : 'i' } })
+        if study.PatientBirthDate is not None:
+            filter.append({'PatientBirthDate' : { '$regex' :  study.PatientBirthDate, '$options' : 'i' } })
+        return filter
+       
+
+    async def search(self, study) -> list:
+        result = list()      
+        filter = await self.prepare_filter(study)
+        cursor = self.db.items.find({'$and':  filter })
+        for item in await cursor.to_list(length=100):
+            result.append(item)
+ 
         return result
 
 

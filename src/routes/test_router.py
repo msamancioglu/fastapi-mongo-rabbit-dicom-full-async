@@ -18,15 +18,21 @@ test_router = APIRouter(prefix='/test', tags=['Test routes'])
 
 
 class Study(BaseModel):
-   FileName:Optional[str]
-   PatientName:Optional[str]
-   PatientID:Optional[str]
-   StudyDate:Optional[str]
-   StudyDescription:Optional[str]
-   SeriesInstanceUID:Optional[str]
-   StudyID:Optional[str]
-   PatientBirthDate:Optional[str]
+    FileName:Optional[str]
+    PatientName:Optional[str]
+    PatientID:Optional[str]
+    StudyDate:Optional[str]
+    StudyDescription:Optional[str]
+    SeriesInstanceUID:Optional[str]
+    StudyID:Optional[str]
+    PatientBirthDate:Optional[str]
 
+
+
+@test_router.post('/search', response_model=List[Study])
+async def search_studies(study:Study):
+    items = await db_manager.search(study)
+    return items
 
 @test_router.get('/studies', response_model=List[Study])
 async def list_studies():
